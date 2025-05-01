@@ -1,70 +1,103 @@
-Contributing to GeoJSON to Shapefile Converter
-Thank you for contributing to GeoJSON to Shapefile Converter! This JavaScript library converts GeoJSON to Shapefile format in the browser. We welcome bug fixes, new features, documentation improvements, and examples.
-How to Contribute
+# Contributing to GeoJSON to Shapefile Converter
 
-Fork the Repository:
+Thank you for contributing to **GeoJSON to Shapefile Converter**! This JavaScript library converts GeoJSON to Shapefile format in the browser. We welcome bug fixes, new features, documentation improvements, and examples.
 
-Fork ghonim0007/geojson-to-shapefile.
+---
 
+## How to Contribute
 
-Clone and Branch:
+### 1. Fork the Repository
 
-Clone your fork and create a new branch:git clone https://github.com/<your-username>/geojson-to-shapefile.git
+Fork the official repository:
+
+> [https://github.com/ghonim0007/geojson-to-shapefile](https://github.com/ghonim0007/geojson-to-shapefile)
+
+### 2. Clone and Branch
+
+```bash
+git clone https://github.com/<your-username>/geojson-to-shapefile.git
+cd geojson-to-shapefile
 git checkout -b feature/your-feature
+```
 
+### 3. Make Changes
 
+* Edit files in the `src/` folder (e.g., `points.js` for Point geometry).
+* Add or update demo files in `examples/` if needed.
+* Follow the coding style:
 
+  * Use **2-space indentation**
+  * Write **JSDoc comments**
 
-Make Changes:
+### 4. Test Changes
 
-Edit files in src/ (e.g., points.js for Point geometry) or examples/ for demos.
-Follow the coding style (2-space indentation, JSDoc comments).
+* Test your code in the browser using `examples/demo.html`.
+* Open the downloaded Shapefile in **QGIS** to verify results.
 
+### 5. Commit and Push
 
-Test Changes:
-
-Test in a browser using examples/demo.html.
-Verify Shapefiles in QGIS.
-
-
-Commit and Push:
-
-Commit with a clear message:git commit -m "Fix DBF field handling"
+```bash
+git commit -m "Fix DBF field handling"
 git push origin feature/your-feature
+```
 
+### 6. Submit a Pull Request
 
+* Open a PR on GitHub.
+* Provide a **clear description** of what was changed and how it was tested.
 
+---
 
-Submit a Pull Request:
+## Guidelines
 
-Create a Pull Request with a description of your changes and tests.
+### Code Style
 
+* Use ES Modules (`export` / `import`)
+* Indentation: **2 spaces**
+* Comment using JSDoc format:
 
-
-Guidelines
-
-Code Style: Use ES Modules, 2-space indentation, and JSDoc comments:/**
+```js
+/**
  * Function description
  * @param {type} param - Description
  */
-export function myFunction(param) { ... }
+export function myFunction(param) {
+  // ...
+}
+```
 
+### Testing
 
-Testing: Test in Chrome/Firefox and validate Shapefiles in QGIS.
-Scope: Keep PRs focused (e.g., one bug fix or feature).
-Documentation: Update README.md or examples if needed.
+* Test in **Chrome** and **Firefox**.
+* Validate exported Shapefiles in **QGIS**.
 
-Contribution Ideas
+### Scope
 
-Fix bugs in src/fields.js or src/geojson.js.
-Add LineString/Polygon support in src/poly.js.
-Improve README.md or add demos in examples/.
-Optimize performance for large GeoJSON datasets.
+* Keep Pull Requests focused (e.g., **one feature or fix per PR**).
 
-Need Help?
+### Documentation
 
-Check Issues.
-Open an Issue for questions or ideas.
+* If your changes affect functionality, **update the README.md**.
+* Add examples to the `examples/` folder if relevant.
 
-License
-Contributions are licensed under the MIT License.
+---
+
+## Contribution Ideas
+
+* Fix bugs in `src/fields.js` or `src/geojson.js`.
+* Add **LineString** and **Polygon** support in `src/poly.js`.
+* Improve documentation (`README.md`) or add new demos.
+* Optimize performance for **large GeoJSON datasets**.
+
+---
+
+## Need Help?
+
+* Check [GitHub Issues](../../issues) for open tasks.
+* Open a new Issue if you have **questions or suggestions**.
+
+---
+
+## License
+
+Contributions are licensed under the [MIT License](LICENSE).
