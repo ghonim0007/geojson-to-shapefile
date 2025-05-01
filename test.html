@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GeoJSON to Shapefile Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    textarea {
+      width: 100%;
+      height: 300px;
+      margin-bottom: 10px;
+      font-family: monospace;
+    }
+    .button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    #status {
+      margin-top: 20px;
+      padding: 10px;
+      border-left: 4px solid #ccc;
+    }
+    .success {
+      border-left-color: #4CAF50 !important;
+      background-color: #f2fff2;
+    }
+    .error {
+      border-left-color: #f44336 !important;
+      background-color: #fff2f2;
+    }
+  </style>
+</head>
+<body>
+  <h1>GeoJSON to Shapefile Converter Test</h1>
+  
+  <h2>1. Test with Sample Data</h2>
+  <button id="loadSample" class="button">Load Sample GeoJSON</button>
+  <button id="convertSample" class="button">Convert Sample to Shapefile</button>
+  
+  <h2>2. Test with Custom Data</h2>
+  <textarea id="geojsonInput" placeholder="Paste your GeoJSON here..."></textarea>
+  <button id="convertCustom" class="button">Convert to Shapefile</button>
+  
+  <div id="status">Ready to convert...</div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  
+  <script type="module">
+    import { ShapefileWriter } from './src/index.js';
+    
+    // Sample GeoJSON data with points
+    const sampleGeoJSON = {
+      "type": "FeatureCollection",
+      "features": [
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "Cairo",
+            "country": "Egypt",
+            "population": 20900000
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [31.24, 30.05]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "Alexandria",
+            "country": "Egypt",
+            "population": 5200000
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [29.92, 31.21]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "Giza",
+            "country": "Egypt",
+            "population": 4200000
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [31.21, 30.01]
+          }
+        }
+      ]
+    };
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      const statusDiv = document.getElementById('status');
+      const textarea = document.getElementById('geojsonInput');
+      
+      // Load sample button
+      document.getElementById('loadSample').addEventListener('click', () => {
+        textarea.value = JSON.stringify(sampleGeoJSON, null, 2);
+        statusDiv.textContent = 'Sample GeoJSON loaded.';
+        statusDiv.className = '';
+      });
+      
+      // Convert sample button
+      document.getElementById('convertSample').addEventListener('click', async () => {
+        try {
+          statusDiv.textContent = 'Converting sample GeoJSON...';
+          statusDiv.className = '';
+          
+          await ShapefileWriter.createShapefile(sampleGeoJSON, {
+            filename: 'egypt_cities.zip'
+          });
+          
+          statusDiv.textContent = 'Success! Shapefile downloaded as egypt_cities.zip';
+          statusDiv.className = 'success';
+        } catch (error) {
+          console.error(error);
+          statusDiv.textContent = `Error: ${error.message}`;
+          statusDiv.className = 'error';
+        }
+      });
+      
+      // Convert custom button
+      document.getElementById('convertCustom').addEventListener('click', async () => {
+        try {
+          const geojsonText = textarea.value.trim();
+          if (!geojsonText) {
+            statusDiv.textContent = 'Error: Please enter GeoJSON data.';
+            statusDiv.className = 'error';
+            return;
+          }
+          
+          const geojson = JSON.parse(geojsonText);
+          statusDiv.textContent = 'Converting custom GeoJSON...';
+          statusDiv.className = '';
+          
+          await ShapefileWriter.createShapefile(geojson, {
+            filename: 'custom_data.zip'
+          });
+          
+          statusDiv.textContent = 'Success! Shapefile downloaded as custom_data.zip';
+          statusDiv.className = 'success';
+        } catch (error) {
+          console.error(error);
+          statusDiv.textContent = `Error: ${error.message}`;
+          statusDiv.className = 'error';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

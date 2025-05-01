@@ -1,0 +1,70 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Cairo",
+          "country": "Egypt",
+          "population": 20900000,
+          "isCapital": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [31.24, 30.05]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Alexandria",
+          "country": "Egypt",
+          "population": 5200000,
+          "isCapital": false
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [29.92, 31.21]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Giza",
+          "country": "Egypt",
+          "population": 4200000,
+          "isCapital": false
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [31.21, 30.01]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Luxor",
+          "country": "Egypt",
+          "population": 506588,
+          "isCapital": false
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [32.65, 25.69]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Aswan",
+          "country": "Egypt",
+          "population": 290000,
+          "isCapital": false
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [32.89, 24.09]
+        }
+      }
+    ]
+  }
